@@ -147,10 +147,10 @@ class Branch:
                 for i in range(len(elements)):
                     yield perm[:i] + elements[0:1] + perm[i:]
 
-    def create_route(self, addresses):
+    def create_route(self):
         shortest_route = None
         min_dist = float('inf')
-        for perm in self.all_perms(addresses):
+        for perm in self.all_perms(self.addresses):
             route = [(0, 0)] + list(perm) + [(0, 0)]
             dist = self.total_distance(route)
             if dist < min_dist:
@@ -161,45 +161,53 @@ class Branch:
 
 #Computing bb algorithm
 bb=Branch(addresses)
-route_bb, total_distance_bb = bb.create_route(addresses)
+route_bb, total_distance_bb = bb.create_route()
 
 
 '''Nearest Neighbor Algorithm'''
-unvisited = addresses[:]
-route_nn = [(0, 0)]  # Start at the depot
-order_of_stops_nn = [1]
-total_distance_nn = 0
-current_position_nn = (0, 0)
+class NearestNeighbor:
+    def __init__(self, addresses):
+        self.unvisited=addresses[:]
+        self.route_nn = [(0, 0)]  # Start at the depot
+        self.order_of_stops_nn = [1]
+        self.total_distance_nn = 0
+        self.current_position_nn = (0, 0)
 
-def find_nearest_address(current, unvisited):
-    min_distance = float('inf')
-    nearest_address = None
-    for address in unvisited:
-        dist = distance(current, address)
-        if dist < min_distance:
-            min_distance = dist
-            nearest_address = address
-    return nearest_address, min_distance
+    def find_nearest_address(self):
+        min_distance = float('inf')
+        nearest_address = None
+        for address in self.unvisited:
+            dist = distance(self.current, address)
+            if dist < min_distance:
+                min_distance = dist
+                nearest_address = address
+        return nearest_address, min_distance
 
-nearest, dist = find_nearest_address(current_position_nn, unvisited)
-total_distance_nn += dist
-route_nn.append(nearest)
-order_of_stops_nn.append(len(route_nn))
-current_position_nn = nearest
-unvisited.remove(nearest)
+    def create_route(self):
+        nearest, dist = self.find_nearest_address(self.current_position_nn, self.unvisited)
+        self.total_distance_nn += dist
+        self.route_nn.append(nearest)
+        self.order_of_stops_nn.append(len(self.route_nn))
+        self.current_position_nn = nearest
+        self.unvisited.remove(nearest)
 
-while unvisited:
-    nearest, dist = find_nearest_address(current_position_nn, unvisited)
-    total_distance_nn += dist
-    route_nn.append(nearest)
-    order_of_stops_nn.append(len(route_nn))
-    current_position_nn = nearest
-    unvisited.remove(nearest)
+        while self.unvisited:
+            nearest, dist = self.find_nearest_address(current_position_nn, self.unvisited)
+            self.total_distance_nn += dist
+            self.route_nn.append(nearest)
+            self.order_of_stops_nn.append(len(self.route_nn))
+            current_position_nn = nearest
+            self.unvisited.remove(nearest)
 
-total_distance_nn += distance(current_position_nn, (0, 0))
-route_nn.append((0, 0))
-order_of_stops_nn.append(len(route_nn))
+        self.total_distance_nn += distance(current_position_nn, (0, 0))
+        self.route_nn.append((0, 0))
+        self.order_of_stops_nn.append(len(self.route_nn))
+        return self.route_nn, self.total_distance_nn, self.order_of_stops_nn
 
+
+#compute nn algorithm
+nn=NearestNeighbor(addresses)
+route_nn, total_distance_nn, order_of_stops_nn = nn.create_route()
 
 
 print("Nearest Neighbor Algorithm:")
