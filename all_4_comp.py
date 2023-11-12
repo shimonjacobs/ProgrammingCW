@@ -177,14 +177,14 @@ class NearestNeighbor:
         min_distance = float('inf')
         nearest_address = None
         for address in self.unvisited:
-            dist = distance(self.current, address)
+            dist = distance(self.current_position_nn, address)
             if dist < min_distance:
                 min_distance = dist
                 nearest_address = address
         return nearest_address, min_distance
 
     def create_route(self):
-        nearest, dist = self.find_nearest_address(self.current_position_nn, self.unvisited)
+        nearest, dist = self.find_nearest_address()
         self.total_distance_nn += dist
         self.route_nn.append(nearest)
         self.order_of_stops_nn.append(len(self.route_nn))
@@ -192,7 +192,7 @@ class NearestNeighbor:
         self.unvisited.remove(nearest)
 
         while self.unvisited:
-            nearest, dist = self.find_nearest_address(current_position_nn, self.unvisited)
+            nearest, dist = self.find_nearest_address()
             self.total_distance_nn += dist
             self.route_nn.append(nearest)
             self.order_of_stops_nn.append(len(self.route_nn))
