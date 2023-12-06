@@ -14,7 +14,7 @@ the following libraries need to be installed:
 you can install it from their website or by using `pip`:
 
 ```console
-$ python3 -m pip install -U pip
+python3 -m pip install -U pip
 python3 -m pip install -U matplotlib
 python3 -m pip install -U opencv-python
 ```
