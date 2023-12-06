@@ -39,7 +39,7 @@ enter the number and you will be prompted with
 
 enter the name of the query image e.g `query_image_1.jpg`
 
-**contributors:**
+**contributors:**\
 - Shimon Jacobs
 - Nastaran Keramatidolatabad
 - Safinaz Khalil
