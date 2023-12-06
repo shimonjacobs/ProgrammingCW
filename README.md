@@ -5,8 +5,7 @@ This program can detect objects in an image
 
 ### prerequisites
 
-**Libraries**
-
+**Libraries**\
 the following libraries need to be installed:
 
 1. openCV
@@ -20,7 +19,6 @@ python3 -m pip install -U matplotlib
 python3 -m pip install -U opencv-python
 ```
 Alternatively try replacing `python3` with `python` or `py` depending on your system
-
 
 ### Using the program 
 To use this program, run the following in your terminal
@@ -42,8 +40,8 @@ enter the number and you will be prompted with
 enter the name of the query image e.g `query_image_1.jpg`
 
 **contributors:**
-- shimon jacobs
-- nastaran 
-- safinaz
-- nadia
+- Shimon Jacobs
+- Nastaran Keramatidolatabad
+- Safinaz Khalil
+- Nadia Khodaei
 
