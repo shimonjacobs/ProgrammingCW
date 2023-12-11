@@ -37,6 +37,10 @@ enter the number and you will be prompted with
 
 enter the name of the query image e.g `query_image_1.jpg`
 
+You will then be prompted to ener the path of the training image.
+
+The program will then return the query images with the objects marked out.
+
 **contributors:**
 - Shimon Jacobs
 - Nastaran Keramatidolatabad
