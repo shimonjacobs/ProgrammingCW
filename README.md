@@ -1,9 +1,7 @@
 # Image Detection and Classification Program 
 
 ### Overview
-This program can detect objects in an image
-
-### prerequisites
+This program can detect objects in an image. The user provides a training image, and then a series of query images. THe program will detect the items in the query images.
 
 **Libraries**\
 the following libraries need to be installed:
@@ -39,7 +37,7 @@ enter the number and you will be prompted with
 
 enter the name of the query image e.g `query_image_1.jpg`
 
-**contributors:**\
+**contributors:**
 - Shimon Jacobs
 - Nastaran Keramatidolatabad
 - Safinaz Khalil
